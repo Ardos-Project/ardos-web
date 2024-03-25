@@ -1,0 +1,46 @@
+{
+  "name": "ardos-web",
+  "version": "1.0.0",
+  "author": "Ardos Team",
+  "description": "Ardos Web Panel",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack serve --mode=development --stats-error-details",
+    "build": "cross-env NODE_ENV=production webpack --mode=production",
+    "format": "prettier --write ./src/**/*.{ts,tsx}",
+    "format:check": "prettier --check ./src/**/*.{ts,tsx}"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^6.10.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "@types/node": "^20.10.4",
+    "@types/react": "^18.2.39",
+    "@types/react-dom": "^18.0.11",
+    "@types/react-helmet": "^6.1.6",
+    "@types/react-router-dom": "^5.3.3",
+    "autoprefixer": "^10.4.14",
+    "case-sensitive-paths-webpack-plugin": "^2.4.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.3",
+    "esbuild-loader": "^4.0.2",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.5",
+    "postcss": "^8.4.21",
+    "postcss-loader": "^7.2.4",
+    "prettier": "^3.1.0",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.3.1",
+    "typescript": "^5.0.3",
+    "webpack": "^5.78.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.2"
+  },
+  "prettier": "./prettier-config.json"
+}
