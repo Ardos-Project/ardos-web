@@ -10,6 +10,9 @@ const {EsbuildPlugin} = require("esbuild-loader");
 const isEnvProduction = process.env.NODE_ENV === "production";
 const isEnvDevelopment = !isEnvProduction;
 
+// Try the environment variable, otherwise use root.
+const ASSET_PATH = process.env.ASSET_PATH || "/";
+
 const WebpackConfig = {
     entry: "./src/index.tsx",
     stats: isEnvDevelopment
@@ -60,7 +63,7 @@ const WebpackConfig = {
         },
     },
     output: {
-        publicPath: "/",
+        publicPath: ASSET_PATH,
         path: path.resolve(__dirname, "dist"),
         filename: "[name]-[contenthash].bundle.js",
     },
@@ -84,6 +87,7 @@ const WebpackConfig = {
         }),
         new webpack.DefinePlugin({
             "process.env.PRODUCTION": JSON.stringify(isEnvProduction),
+            "process.env.ASSET_PATH": JSON.stringify(ASSET_PATH),
         }),
         new MiniCssExtractPlugin({
             filename: "[name]-[contenthash].css",
