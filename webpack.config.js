@@ -71,6 +71,7 @@ const WebpackConfig = {
         isEnvDevelopment && new CaseSensitivePathsPlugin(),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, "src/index.html"),
+            publicPath: ASSET_PATH,
             minify: false,
         }),
         new CleanWebpackPlugin(),
