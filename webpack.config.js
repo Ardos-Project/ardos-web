@@ -57,7 +57,6 @@ const WebpackConfig = {
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".json"],
         alias: {
-            "@": path.resolve(__dirname, "src"),
         },
     },
     output: {

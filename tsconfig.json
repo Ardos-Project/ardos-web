@@ -25,9 +25,6 @@
       "src/types"
     ],
     "paths": {
-      "@*": [
-        "src/*"
-      ],
     }
   },
   "include": [

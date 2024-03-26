@@ -7,7 +7,9 @@
     "start": "cross-env NODE_ENV=development webpack serve --mode=development --stats-error-details",
     "build": "cross-env NODE_ENV=production webpack --mode=production",
     "format": "prettier --write ./src/**/*.{ts,tsx}",
-    "format:check": "prettier --check ./src/**/*.{ts,tsx}"
+    "format:check": "prettier --check ./src/**/*.{ts,tsx}",
+    "predeploy" : "yarn build",
+    "deploy" : "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -30,6 +32,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.3",
     "esbuild-loader": "^4.0.2",
+    "gh-pages": "^6.1.1",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.5",
     "postcss": "^8.4.21",
