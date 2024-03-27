@@ -60,6 +60,8 @@ const WebpackConfig = {
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".json"],
         alias: {
+            "@context": path.resolve(__dirname, "src/context"),
+            "@hooks": path.resolve(__dirname, "src/hooks"),
         },
     },
     output: {

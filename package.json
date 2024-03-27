@@ -8,15 +8,16 @@
     "build": "cross-env NODE_ENV=production webpack --mode=production",
     "format": "prettier --write ./src/**/*.{ts,tsx}",
     "format:check": "prettier --check ./src/**/*.{ts,tsx}",
-    "predeploy" : "cross-env NODE_ENV=production ASSET_PATH=\"https://ardos-project.github.io/ardos-web\" webpack --mode=production",
-    "deploy" : "gh-pages -d dist"
+    "predeploy": "cross-env NODE_ENV=production ASSET_PATH=\"https://ardos-project.github.io/ardos-web\" webpack --mode=production",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-hot-toast": "^2.4.1",
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^6.10.0",
+    "react-use-websocket": "^4.8.1"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
