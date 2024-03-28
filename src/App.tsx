@@ -1,31 +1,33 @@
 import {Routes, Route} from "react-router-dom";
 import {Toaster} from "react-hot-toast";
 
-import ThemeContext from "@context/ThemeContext";
 import useTheme from "@hooks/ThemeHook";
-import useAuth from "@hooks/AuthHook";
-import AuthContext from "@context/AuthContext";
+import useWs from "@hooks/WsHook";
+import ThemeContext from "@context/ThemeContext";
+import WsContext from "@context/WsContext";
+
 import Login from "./routes/Login";
 
 export function App() {
     const {theme, setTheme} = useTheme();
-    const {authed, url, setAuthed, setUrl} = useAuth();
+    const {authed, connect, disconnect, subscribe, unsubscribe, send} = useWs();
 
     if (!authed) {
         return (
             <ThemeContext.Provider value={{theme, setTheme}}>
-                <Login setAuthed={setAuthed} url={url} setUrl={setUrl} />;
+                <Toaster position="top-right" reverseOrder={true} />
+                <Login connect={connect} />;
             </ThemeContext.Provider>
         );
     }
 
     return (
         <ThemeContext.Provider value={{theme, setTheme}}>
-            <AuthContext.Provider value={{authed, url, setAuthed, setUrl}}>
+            <WsContext.Provider value={{authed, connect, disconnect, subscribe, unsubscribe, send}}>
                 <Toaster position="top-right" reverseOrder={true} />
 
                 <Routes></Routes>
-            </AuthContext.Provider>
+            </WsContext.Provider>
         </ThemeContext.Provider>
     );
 }
