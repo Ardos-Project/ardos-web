@@ -12,7 +12,7 @@ const Login: FunctionComponent<LoginProps> = (props) => {
     const [port, setPort] = useState("7781");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [useSSL, setUseSSL] = useState(false);
+    const [useSSL, setUseSSL] = useState(true);
     const [submitDisabled, setSubmitDisabled] = useState(false);
 
     function handleLogin(event: FormEvent) {
@@ -131,6 +131,7 @@ const Login: FunctionComponent<LoginProps> = (props) => {
                                             name="ssl"
                                             type="checkbox"
                                             className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                                            checked={useSSL}
                                             onChange={(e) => setUseSSL(e.target.checked)}
                                         />
                                         <label htmlFor="ssl" className="ml-2 block text-sm text-gray-900">

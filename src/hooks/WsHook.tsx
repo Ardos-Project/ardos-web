@@ -11,8 +11,9 @@ export default function useWs() {
         ws.current.onopen = () => {
             send("auth", {username, password});
         };
-        ws.current.onclose = () => {
+        ws.current.onclose = (event) => {
             setAuthed(false);
+            console.error(`WS Closed: ${event.code}: ${event.reason}`);
         };
         ws.current.onmessage = (message: MessageEvent) => {
             const {type, ...data} = JSON.parse(message.data);
