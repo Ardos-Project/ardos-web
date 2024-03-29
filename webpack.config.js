@@ -56,6 +56,19 @@ const WebpackConfig = {
         open: true,
         hot: true,
         port: 8000,
+        client: {
+            overlay: {
+                runtimeErrors: (error) => {
+                    // TODO: What the hell is causing this??
+                    // Seems to be an annoying benign runtime error in dev.
+                    // Started appearing as of March 2023.
+                    // See: https://stackoverflow.com/questions/75774800/how-to-stop-resizeobserver-loop-limit-exceeded-error-from-appearing-in-react-a
+                    return (error.message !== "ResizeObserver loop limit exceeded" &&
+                        error.message !== "ResizeObserver loop completed with undelivered notifications."
+                    );
+                }
+            }
+        }
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".json"],

@@ -19,12 +19,18 @@ export function App() {
                 <Toaster
                     position="top-right"
                     reverseOrder={true}
-                    toastOptions={theme === "dark" ? {style: {background: "#333", color: "#fff"}} : {}}
+                    toastOptions={theme === "dark" ? {} : {style: {background: "#333", color: "#fff"}}}
                 />
 
                 {authed ? (
                     <Routes>
                         <Route path={"/"} element={<Home />} />
+                        <Route path={"/md"} element={<Home />} />
+                        <Route path={"/ca"} element={<Home />} />
+                        <Route path={"/ss"} element={<Home />} />
+                        <Route path={"/db"} element={<Home />} />
+                        <Route path={"/dbss"} element={<Home />} />
+                        <Route path={"/config"} element={<Home />} />
                     </Routes>
                 ) : (
                     <Login connect={connect} />

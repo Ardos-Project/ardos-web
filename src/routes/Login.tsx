@@ -30,7 +30,7 @@ const Login: FunctionComponent<LoginProps> = (props) => {
     }
 
     return (
-        <div className="min-h-screen bg-[#007BB8] flex flex-col">
+        <div className="min-h-screen bg-gray-300 dark:bg-gray-700 flex flex-col">
             <Helmet>
                 <title>Login | Ardos</title>
             </Helmet>
@@ -38,7 +38,7 @@ const Login: FunctionComponent<LoginProps> = (props) => {
             <div className="py-10">
                 <header>
                     <img
-                        className={"max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8 h-16"}
+                        className={"max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8 md:h-56 h-32"}
                         src={ardosLogo}
                         alt={"Ardos Logo"}
                     />
