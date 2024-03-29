@@ -6,27 +6,29 @@ import useWs from "@hooks/WsHook";
 import ThemeContext from "@context/ThemeContext";
 import WsContext from "@context/WsContext";
 
-import Login from "./routes/Login";
+import Login from "@routes/Login";
+import Home from "@routes/Home";
 
 export function App() {
     const {theme, setTheme} = useTheme();
-    const {authed, connect, disconnect, subscribe, unsubscribe, send} = useWs();
-
-    if (!authed) {
-        return (
-            <ThemeContext.Provider value={{theme, setTheme}}>
-                <Toaster position="top-right" reverseOrder={true} />
-                <Login connect={connect} />;
-            </ThemeContext.Provider>
-        );
-    }
+    const {authed, name, connect, disconnect, subscribe, unsubscribe, send} = useWs();
 
     return (
         <ThemeContext.Provider value={{theme, setTheme}}>
-            <WsContext.Provider value={{authed, connect, disconnect, subscribe, unsubscribe, send}}>
-                <Toaster position="top-right" reverseOrder={true} />
+            <WsContext.Provider value={{authed, name, connect, disconnect, subscribe, unsubscribe, send}}>
+                <Toaster
+                    position="top-right"
+                    reverseOrder={true}
+                    toastOptions={theme === "dark" ? {style: {background: "#333", color: "#fff"}} : {}}
+                />
 
-                <Routes></Routes>
+                {authed ? (
+                    <Routes>
+                        <Route path={"/"} element={<Home />} />
+                    </Routes>
+                ) : (
+                    <Login connect={connect} />
+                )}
             </WsContext.Provider>
         </ThemeContext.Provider>
     );

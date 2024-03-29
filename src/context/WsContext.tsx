@@ -2,6 +2,7 @@ import {createContext} from "react";
 
 export type WsContextType = {
     authed: boolean;
+    name: string;
     connect?: Function;
     disconnect?: Function;
     subscribe?: Function;
@@ -9,7 +10,7 @@ export type WsContextType = {
     send?: Function;
 };
 
-const WsContext = createContext<WsContextType>({authed: false});
+const WsContext = createContext<WsContextType>({authed: false, name: ""});
 
 WsContext.displayName = "Websocket";
 

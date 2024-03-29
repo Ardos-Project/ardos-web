@@ -5,6 +5,7 @@ export default function useWs() {
     const messageCallbacks = useRef<{[message: string]: Function}>({});
 
     const [authed, setAuthed] = useState(false);
+    const [name, setName] = useState("");
 
     const connect = (url: string, username: string, password: string, callback: Function) => {
         ws.current = new WebSocket(url);
@@ -21,6 +22,7 @@ export default function useWs() {
             if (!authed) {
                 if (type === "auth" && data["success"] === true) {
                     callback(true);
+                    setName(data["name"]);
                     setAuthed(true);
                 } else {
                     callback(false);
@@ -54,6 +56,7 @@ export default function useWs() {
 
     return {
         authed,
+        name,
         connect,
         disconnect,
         subscribe,

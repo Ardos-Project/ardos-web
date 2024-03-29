@@ -30,6 +30,15 @@
       ],
       "@hooks/*": [
         "src/hooks/*"
+      ],
+      "@routes/*": [
+        "src/routes/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@util/*": [
+        "src/util/*"
       ]
     }
   },

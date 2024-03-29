@@ -62,6 +62,9 @@ const WebpackConfig = {
         alias: {
             "@context": path.resolve(__dirname, "src/context"),
             "@hooks": path.resolve(__dirname, "src/hooks"),
+            "@routes": path.resolve(__dirname, "src/routes"),
+            "@components": path.resolve(__dirname, "src/components"),
+            "@util": path.resolve(__dirname, "src/util"),
         },
     },
     output: {
