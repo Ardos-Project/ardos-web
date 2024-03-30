@@ -1,4 +1,5 @@
 import React, {FormEvent, Fragment, useContext, useState} from "react";
+import {Link} from "react-router-dom";
 import {Dialog, Transition} from "@headlessui/react";
 import {
     Bars3Icon,
@@ -16,6 +17,7 @@ import {
 import {ServerIcon} from "@heroicons/react/20/solid";
 import ThemeContext from "@context/ThemeContext";
 import WsContext from "@context/WsContext";
+import SymbolLogo from "../img/SymbolLogo.png";
 
 const navigation = [
     {name: "Home", href: "/", icon: HomeIcon},
@@ -94,11 +96,7 @@ export default function Dashboard({children}: Readonly<{children: React.ReactNod
                                 </Transition.Child>
                                 <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 ring-1 ring-white/10">
                                     <div className="flex h-16 shrink-0 items-center">
-                                        <img
-                                            className="h-8 w-auto"
-                                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                            alt="Your Company"
-                                        />
+                                        <img className="h-8 w-auto" src={SymbolLogo} alt="Ardos Logo" />
                                     </div>
                                     <nav className="flex flex-1 flex-col">
                                         <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -106,8 +104,8 @@ export default function Dashboard({children}: Readonly<{children: React.ReactNod
                                                 <ul role="list" className="-mx-2 space-y-1">
                                                     {navigation.map((item) => (
                                                         <li key={item.name}>
-                                                            <a
-                                                                href={item.href}
+                                                            <Link
+                                                                to={item.href}
                                                                 className={
                                                                     "text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-lg leading-6 font-semibold"
                                                                 }
@@ -117,7 +115,7 @@ export default function Dashboard({children}: Readonly<{children: React.ReactNod
                                                                     aria-hidden="true"
                                                                 />
                                                                 {item.name}
-                                                            </a>
+                                                            </Link>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -135,11 +133,7 @@ export default function Dashboard({children}: Readonly<{children: React.ReactNod
             <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
                 <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4">
                     <div className="flex h-16 shrink-0 items-center">
-                        <img
-                            className="h-8 w-auto"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                            alt="Your Company"
-                        />
+                        <img className="h-12 w-auto" src={SymbolLogo} alt="Ardos Logo" />
                     </div>
                     <nav className="flex flex-1 flex-col">
                         <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -147,15 +141,15 @@ export default function Dashboard({children}: Readonly<{children: React.ReactNod
                                 <ul role="list" className="-mx-2 space-y-1">
                                     {navigation.map((item) => (
                                         <li key={item.name}>
-                                            <a
-                                                href={item.href}
+                                            <Link
+                                                to={item.href}
                                                 className={
                                                     "text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-lg leading-6 font-semibold"
                                                 }
                                             >
                                                 <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
                                                 {item.name}
-                                            </a>
+                                            </Link>
                                         </li>
                                     ))}
                                 </ul>

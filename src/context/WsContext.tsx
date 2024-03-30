@@ -2,7 +2,9 @@ import {createContext} from "react";
 
 export type WsContextType = {
     authed: boolean;
+    setAuthed?: Function;
     name: string;
+    setName?: Function;
     connect?: Function;
     disconnect?: Function;
     subscribe?: Function;

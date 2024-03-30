@@ -1,32 +1,46 @@
-import {FormEvent, FunctionComponent, useState} from "react";
+import {FormEvent, FunctionComponent, useContext, useEffect, useState} from "react";
 import {Helmet} from "react-helmet";
-import ardosLogo from "../img/ardosLogo.png";
 import toast from "react-hot-toast";
+import WsContext from "@context/WsContext";
+import ardosLogo from "../img/ardosLogo.png";
 
-type LoginProps = {
-    connect?: Function;
-};
+const Login: FunctionComponent = () => {
+    const {setAuthed, setName, connect, subscribe, unsubscribe} = useContext(WsContext);
 
-const Login: FunctionComponent<LoginProps> = (props) => {
     const [host, setHost] = useState("localhost");
     const [port, setPort] = useState("7781");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [useSSL, setUseSSL] = useState(true);
-    const [submitDisabled, setSubmitDisabled] = useState(false);
 
-    function handleLogin(event: FormEvent) {
-        event.preventDefault();
-        setSubmitDisabled(true);
+    useEffect(() => {
+        // Automatic login during development.
+        if (process.env.DEV_LOG) {
+            ardosConnect("ws://localhost:7781", "ardos", "ardos");
+        }
 
-        const url = useSSL ? `wss://${host}:${port}` : `ws://${host}:${port}`;
-        props.connect?.(url, username, password, (success: boolean) => {
-            if (success) {
+        return () => unsubscribe?.("auth");
+    }, []);
+
+    function ardosConnect(url: string, username: string, password: string) {
+        subscribe?.("auth", (data: any) => {
+            if (data["success"] === true) {
                 toast.success("Logged in");
+                setName?.(data["name"]);
+                setAuthed?.(true);
             } else {
                 toast.error("Incorrect username or password!");
             }
         });
+
+        connect?.(url, username, password);
+    }
+
+    function handleLogin(e: FormEvent) {
+        e.preventDefault();
+
+        const url = useSSL ? `wss://${host}:${port}` : `ws://${host}:${port}`;
+        ardosConnect(url, username, password);
     }
 
     return (
@@ -144,7 +158,6 @@ const Login: FunctionComponent<LoginProps> = (props) => {
                                     <button
                                         type="submit"
                                         className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                        disabled={submitDisabled}
                                     >
                                         Connect
                                     </button>

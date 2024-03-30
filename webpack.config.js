@@ -107,6 +107,7 @@ const WebpackConfig = {
         new webpack.DefinePlugin({
             "process.env.PRODUCTION": JSON.stringify(isEnvProduction),
             "process.env.ASSET_PATH": JSON.stringify(ASSET_PATH),
+            "process.env.DEV_LOG": JSON.stringify(process.env.DEV_LOG),
         }),
         new MiniCssExtractPlugin({
             filename: "[name]-[contenthash].css",

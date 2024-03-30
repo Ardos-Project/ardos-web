@@ -8,14 +8,17 @@ import WsContext from "@context/WsContext";
 
 import Login from "@routes/Login";
 import Home from "@routes/Home";
+import Config from "@routes/Config";
 
 export function App() {
     const {theme, setTheme} = useTheme();
-    const {authed, name, connect, disconnect, subscribe, unsubscribe, send} = useWs();
+    const {authed, setAuthed, name, setName, connect, disconnect, subscribe, unsubscribe, send} = useWs();
 
     return (
         <ThemeContext.Provider value={{theme, setTheme}}>
-            <WsContext.Provider value={{authed, name, connect, disconnect, subscribe, unsubscribe, send}}>
+            <WsContext.Provider
+                value={{authed, setAuthed, name, setName, connect, disconnect, subscribe, unsubscribe, send}}
+            >
                 <Toaster
                     position="top-right"
                     reverseOrder={true}
@@ -30,10 +33,10 @@ export function App() {
                         <Route path={"/ss"} element={<Home />} />
                         <Route path={"/db"} element={<Home />} />
                         <Route path={"/dbss"} element={<Home />} />
-                        <Route path={"/config"} element={<Home />} />
+                        <Route path={"/config"} element={<Config />} />
                     </Routes>
                 ) : (
-                    <Login connect={connect} />
+                    <Login />
                 )}
             </WsContext.Provider>
         </ThemeContext.Provider>

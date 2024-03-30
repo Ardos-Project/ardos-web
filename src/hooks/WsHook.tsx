@@ -7,7 +7,7 @@ export default function useWs() {
     const [authed, setAuthed] = useState(false);
     const [name, setName] = useState("");
 
-    const connect = (url: string, username: string, password: string, callback: Function) => {
+    const connect = (url: string, username: string, password: string) => {
         ws.current = new WebSocket(url);
         ws.current.onopen = () => {
             send("auth", {username, password});
@@ -18,19 +18,7 @@ export default function useWs() {
         };
         ws.current.onmessage = (message: MessageEvent) => {
             const {type, ...data} = JSON.parse(message.data);
-
-            if (!authed) {
-                if (type === "auth" && data["success"] === true) {
-                    callback(true);
-                    setName(data["name"]);
-                    setAuthed(true);
-                } else {
-                    callback(false);
-                    setAuthed(false);
-                    ws.current?.close();
-                    ws.current = null;
-                }
-            } else if (messageCallbacks.current[type]) {
+            if (messageCallbacks.current[type]) {
                 messageCallbacks.current[type](data);
             } else {
                 console.warn(`Received unhandled message ${type}: ${data}`);
@@ -56,7 +44,9 @@ export default function useWs() {
 
     return {
         authed,
+        setAuthed,
         name,
+        setName,
         connect,
         disconnect,
         subscribe,
