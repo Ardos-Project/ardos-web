@@ -1,4 +1,5 @@
 import {useContext, useEffect, useState} from "react";
+import {Helmet} from "react-helmet";
 import {CodeBlock, dracula, github} from "react-code-blocks";
 import ThemeContext from "@context/ThemeContext";
 import WsContext from "@context/WsContext";
@@ -15,7 +16,7 @@ export default function Config() {
             setConfig(data["config"]);
         });
 
-        send?.("config", {asd: "asd"});
+        send?.("config", {});
 
         return () => {
             unsubscribe?.("config");
@@ -24,6 +25,10 @@ export default function Config() {
 
     return (
         <Dashboard>
+            <Helmet>
+                <title>Config | Ardos</title>
+            </Helmet>
+
             <h1 className={"pb-4 text-4xl font-bold text-gray-700 dark:text-white"}>Config File</h1>
 
             <CodeBlock
