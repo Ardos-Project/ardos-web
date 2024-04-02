@@ -8,6 +8,11 @@ import WsContext from "@context/WsContext";
 
 import Login from "@routes/Login";
 import Home from "@routes/Home";
+import MessageDirector from "@routes/MessageDirector";
+import ClientAgent from "@routes/ClientAgent";
+import StateServer from "@routes/StateServer";
+import Database from "@routes/Database";
+import DatabaseStateServer from "@routes/DatabaseStateServer";
 import Config from "@routes/Config";
 
 export function App() {
@@ -20,7 +25,7 @@ export function App() {
                 value={{authed, setAuthed, name, setName, connect, disconnect, subscribe, unsubscribe, send}}
             >
                 <Toaster
-                    position="top-right"
+                    position="top-center"
                     reverseOrder={true}
                     toastOptions={theme === "dark" ? {} : {style: {background: "#333", color: "#fff"}}}
                 />
@@ -28,11 +33,11 @@ export function App() {
                 {authed ? (
                     <Routes>
                         <Route path={"/"} element={<Home />} />
-                        <Route path={"/md"} element={<Home />} />
-                        <Route path={"/ca"} element={<Home />} />
-                        <Route path={"/ss"} element={<Home />} />
-                        <Route path={"/db"} element={<Home />} />
-                        <Route path={"/dbss"} element={<Home />} />
+                        <Route path={"/md"} element={<MessageDirector />} />
+                        <Route path={"/ca"} element={<ClientAgent />} />
+                        <Route path={"/ss"} element={<StateServer />} />
+                        <Route path={"/db"} element={<Database />} />
+                        <Route path={"/dbss"} element={<DatabaseStateServer />} />
                         <Route path={"/config"} element={<Config />} />
                     </Routes>
                 ) : (

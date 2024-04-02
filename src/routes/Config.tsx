@@ -18,9 +18,7 @@ export default function Config() {
 
         send?.("config", {});
 
-        return () => {
-            unsubscribe?.("config");
-        };
+        return () => unsubscribe?.("config");
     }, []);
 
     return (
