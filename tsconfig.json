@@ -25,6 +25,21 @@
       "src/types"
     ],
     "paths": {
+      "@context/*": [
+        "src/context/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@routes/*": [
+        "src/routes/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@util/*": [
+        "src/util/*"
+      ]
     }
   },
   "include": [

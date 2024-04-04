@@ -56,10 +56,28 @@ const WebpackConfig = {
         open: true,
         hot: true,
         port: 8000,
+        client: {
+            overlay: {
+                runtimeErrors: (error) => {
+                    // TODO: What the hell is causing this??
+                    // Seems to be an annoying benign runtime error in dev.
+                    // Started appearing as of March 2023.
+                    // See: https://stackoverflow.com/questions/75774800/how-to-stop-resizeobserver-loop-limit-exceeded-error-from-appearing-in-react-a
+                    return (error.message !== "ResizeObserver loop limit exceeded" &&
+                        error.message !== "ResizeObserver loop completed with undelivered notifications."
+                    );
+                }
+            }
+        }
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".json"],
         alias: {
+            "@context": path.resolve(__dirname, "src/context"),
+            "@hooks": path.resolve(__dirname, "src/hooks"),
+            "@routes": path.resolve(__dirname, "src/routes"),
+            "@components": path.resolve(__dirname, "src/components"),
+            "@util": path.resolve(__dirname, "src/util"),
         },
     },
     output: {
@@ -89,6 +107,7 @@ const WebpackConfig = {
         new webpack.DefinePlugin({
             "process.env.PRODUCTION": JSON.stringify(isEnvProduction),
             "process.env.ASSET_PATH": JSON.stringify(ASSET_PATH),
+            "process.env.DEV_LOG": JSON.stringify(process.env.DEV_LOG),
         }),
         new MiniCssExtractPlugin({
             filename: "[name]-[contenthash].css",
