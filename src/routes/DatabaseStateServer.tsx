@@ -16,7 +16,7 @@ export default function DatabaseStateServer() {
             <Helmet>
                 <title>Database State Server | Ardos</title>
             </Helmet>
-            Home
+            TODO
         </Dashboard>
     );
 }

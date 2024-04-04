@@ -16,7 +16,7 @@ export default function StateServer() {
             <Helmet>
                 <title>State Server | Ardos</title>
             </Helmet>
-            Home
+            TODO
         </Dashboard>
     );
 }
