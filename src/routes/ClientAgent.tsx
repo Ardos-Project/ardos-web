@@ -5,6 +5,7 @@ import Dashboard from "@components/Dashboard";
 import WsContext from "@context/WsContext";
 import Loading from "@components/Loading";
 import NotAvailable from "@components/NotAvailable";
+import {InformationCircleIcon} from "@heroicons/react/20/solid";
 
 const AUTH_STATES = {
     0: "New",
@@ -28,6 +29,7 @@ export default function ClientAgent() {
     const [available, setAvailable] = useState(false);
     const [listenIp, setListenIp] = useState("");
     const [listenPort, setListenPort] = useState(0);
+    const [legacy, setLegacy] = useState(false);
     const [clients, setClients] = useState<ClientInfo[]>([]);
 
     useEffect(() => {
@@ -41,6 +43,7 @@ export default function ClientAgent() {
             setAvailable(true);
             setListenIp(data["listenIp"]);
             setListenPort(data["listenPort"]);
+            setLegacy(data["legacy"]);
             setClients(data["clients"]);
 
             setLoading(false);
@@ -64,6 +67,22 @@ export default function ClientAgent() {
             <Helmet>
                 <title>Client Agent | Ardos</title>
             </Helmet>
+
+            {legacy && (
+                <div className="rounded-md bg-blue-50 p-4">
+                    <div className="flex">
+                        <div className="flex-shrink-0">
+                            <InformationCircleIcon className="h-5 w-5 text-blue-400" aria-hidden="true" />
+                        </div>
+                        <div className="ml-3">
+                            <p className="text-sm text-blue-700">
+                                Ardos has been compiled in <span className={"font-extrabold"}>LEGACY</span> mode. See
+                                GitHub for more information.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             <div className={"pb-8"}>
                 <h1 className={"text-4xl font-bold text-gray-700 dark:text-white"}>Host (Listen) Details</h1>
