@@ -60,6 +60,7 @@ export default function MessageDirector() {
             <Helmet>
                 <title>Message Director | Ardos</title>
             </Helmet>
+
             <div className={"pb-8"}>
                 <h1 className={"text-4xl font-bold text-gray-700 dark:text-white"}>Host (Listen) Details</h1>
                 <dl className="mt-6 space-y-6 divide-y divide-gray-100 border-t border-gray-200 text-sm leading-6">
@@ -81,6 +82,7 @@ export default function MessageDirector() {
                     </div>
                 </dl>
             </div>
+
             <div className={"py-8"}>
                 <h1 className={"text-4xl font-bold text-gray-700 dark:text-white"}>RabbitMQ (Connect) Details</h1>
                 <dl className="mt-6 space-y-6 divide-y divide-gray-100 border-t border-gray-200 text-sm leading-6">
@@ -102,6 +104,7 @@ export default function MessageDirector() {
                     </div>
                 </dl>
             </div>
+
             <div className={"py-8"}>
                 <h1 className={"text-4xl font-bold text-gray-700 dark:text-white"}>Connected Participants</h1>
                 <div className="mt-8 flow-root">
