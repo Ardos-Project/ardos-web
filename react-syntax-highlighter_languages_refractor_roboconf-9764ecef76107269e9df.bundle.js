@@ -1,0 +1,3 @@
+"use strict";(()=>{(self.webpackChunkardos_web=self.webpackChunkardos_web||[]).push([[3750],{4473:a=>{a.exports=t,t.displayName="roboconf",t.aliases=[];function t(e){e.languages.roboconf={comment:/#.*/,keyword:{pattern:/(^|\s)(?:(?:external|import)\b|(?:facet|instance of)(?=[ \t]+[\w-]+[ \t]*\{))/,lookbehind:!0},component:{pattern:/[\w-]+(?=[ \t]*\{)/,alias:"variable"},property:/[\w.-]+(?=[ \t]*:)/,value:{pattern:/(=[ \t]*(?![ \t]))[^,;]+/,lookbehind:!0,alias:"attr-value"},optional:{pattern:/\(optional\)/,alias:"builtin"},wildcard:{pattern:/(\.)\*/,lookbehind:!0,alias:"operator"},punctuation:/[{},.;:=]/}}}}]);})();
+
+//# sourceMappingURL=react-syntax-highlighter_languages_refractor_roboconf-9764ecef76107269e9df.bundle.js.map

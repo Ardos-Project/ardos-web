@@ -1,0 +1,5 @@
+"use strict";(()=>{(self.webpackChunkardos_web=self.webpackChunkardos_web||[]).push([[9117],{3856:d=>{d.exports=i,i.displayName="diff",i.aliases=[];function i(n){(function(s){s.languages.diff={coord:[/^(?:\*{3}|-{3}|\+{3}).*$/m,/^@@.*@@$/m,/^\d.*$/m]};var f={"deleted-sign":"-","deleted-arrow":"<","inserted-sign":"+","inserted-arrow":">",unchanged:" ",diff:"!"};Object.keys(f).forEach(function(e){var r=f[e],a=[];/^\w+$/.test(e)||a.push(/\w+/.exec(e)[0]),e==="diff"&&a.push("bold"),s.languages.diff[e]={pattern:RegExp("^(?:["+r+`].*(?:\r
+?|
+|(?![\\s\\S])))+`,"m"),alias:a,inside:{line:{pattern:/(.)(?=[\s\S]).*(?:\r\n?|\n)?/,lookbehind:!0},prefix:{pattern:/[\s\S]/,alias:/\w+/.exec(e)[0]}}}}),Object.defineProperty(s.languages.diff,"PREFIXES",{value:f})})(n)}}}]);})();
+
+//# sourceMappingURL=react-syntax-highlighter_languages_refractor_diff-9d48a417476825f2b9cd.bundle.js.map

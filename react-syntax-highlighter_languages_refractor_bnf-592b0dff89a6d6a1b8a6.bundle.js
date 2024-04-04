@@ -1,0 +1,3 @@
+"use strict";(()=>{(self.webpackChunkardos_web=self.webpackChunkardos_web||[]).push([[1126],{7161:a=>{a.exports=n,n.displayName="bnf",n.aliases=["rbnf"];function n(e){e.languages.bnf={string:{pattern:/"[^\r\n"]*"|'[^\r\n']*'/},definition:{pattern:/<[^<>\r\n\t]+>(?=\s*::=)/,alias:["rule","keyword"],inside:{punctuation:/^<|>$/}},rule:{pattern:/<[^<>\r\n\t]+>/,inside:{punctuation:/^<|>$/}},operator:/::=|[|()[\]{}*+?]|\.{3}/},e.languages.rbnf=e.languages.bnf}}}]);})();
+
+//# sourceMappingURL=react-syntax-highlighter_languages_refractor_bnf-592b0dff89a6d6a1b8a6.bundle.js.map
