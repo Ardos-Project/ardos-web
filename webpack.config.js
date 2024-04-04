@@ -15,14 +15,11 @@ const ASSET_PATH = process.env.ASSET_PATH || "/";
 
 const WebpackConfig = {
     entry: "./src/index.tsx",
-    stats: isEnvDevelopment
-        ? {
-            colors: true,
-            modules: true,
-            reasons: true,
-            errorDetails: true,
-        }
-        : {},
+    output: {
+        publicPath: ASSET_PATH,
+        path: path.resolve(__dirname, "dist"),
+        filename: "[name]-[contenthash].bundle.js",
+    },
     mode: isEnvProduction ? "production" : "development",
     devtool: "source-map",
     module: {
@@ -50,6 +47,14 @@ const WebpackConfig = {
             },
         ],
     },
+    stats: isEnvDevelopment
+        ? {
+            colors: true,
+            modules: true,
+            reasons: true,
+            errorDetails: true,
+        }
+        : {},
     devServer: {
         historyApiFallback: true,
         static: path.resolve(__dirname, "./static"),
@@ -79,11 +84,6 @@ const WebpackConfig = {
             "@components": path.resolve(__dirname, "src/components"),
             "@util": path.resolve(__dirname, "src/util"),
         },
-    },
-    output: {
-        publicPath: ASSET_PATH,
-        path: path.resolve(__dirname, "dist"),
-        filename: "[name]-[contenthash].bundle.js",
     },
     plugins: [
         isEnvDevelopment && new CaseSensitivePathsPlugin(),
