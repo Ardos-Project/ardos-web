@@ -10,6 +10,7 @@ import Login from "@routes/Login";
 import Home from "@routes/Home";
 import MessageDirector from "@routes/MessageDirector";
 import ClientAgent from "@routes/ClientAgent";
+import ViewClient from "@routes/ViewClient";
 import StateServer from "@routes/StateServer";
 import Database from "@routes/Database";
 import DatabaseStateServer from "@routes/DatabaseStateServer";
@@ -33,11 +34,18 @@ export function App() {
                 {authed ? (
                     <Routes>
                         <Route path={"/"} element={<Home />} />
+
                         <Route path={"/md"} element={<MessageDirector />} />
+
                         <Route path={"/ca"} element={<ClientAgent />} />
+                        <Route path={"/ca/:channel"} element={<ViewClient />} />
+
                         <Route path={"/ss"} element={<StateServer />} />
+
                         <Route path={"/db"} element={<Database />} />
+
                         <Route path={"/dbss"} element={<DatabaseStateServer />} />
+
                         <Route path={"/config"} element={<Config />} />
                     </Routes>
                 ) : (
