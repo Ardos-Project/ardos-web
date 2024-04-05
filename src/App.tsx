@@ -15,6 +15,7 @@ import StateServer from "@routes/StateServer";
 import ViewDistObj from "@routes/ViewDistObj";
 import Database from "@routes/Database";
 import DatabaseStateServer from "@routes/DatabaseStateServer";
+import ViewDbDistObj from "@routes/ViewDbDistObj";
 import Config from "@routes/Config";
 
 export function App() {
@@ -47,6 +48,7 @@ export function App() {
                         <Route path={"/db"} element={<Database />} />
 
                         <Route path={"/dbss"} element={<DatabaseStateServer />} />
+                        <Route path={"/dbss/:doId"} element={<ViewDbDistObj />} />
 
                         <Route path={"/config"} element={<Config />} />
                     </Routes>

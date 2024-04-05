@@ -7,7 +7,7 @@ import Loading from "@components/Loading";
 import NotAvailable from "@components/NotAvailable";
 import DistributedObjectView, {RamFields, ZoneObjects} from "@components/DistributedObjectView";
 
-export default function ViewDistObj() {
+export default function ViewDbDistObj() {
     const {doId} = useParams();
 
     const {send, subscribe, unsubscribe} = useContext(WsContext);
@@ -29,7 +29,7 @@ export default function ViewDistObj() {
             return;
         }
 
-        subscribe?.("ss:distobj", (data: any) => {
+        subscribe?.("dbss:distobj", (data: any) => {
             if (data["success"] === false) {
                 setAvailable(false);
                 setLoading(false);
@@ -48,9 +48,9 @@ export default function ViewDistObj() {
             setLoading(false);
         });
 
-        send?.("ss", {msg: "distobj", doId: parseInt(doId)});
+        send?.("dbss", {msg: "distobj", doId: parseInt(doId)});
 
-        return () => unsubscribe?.("ss:distobj");
+        return () => unsubscribe?.("dbss:distobj");
     }, []);
 
     if (loading) {
@@ -68,7 +68,7 @@ export default function ViewDistObj() {
             </Helmet>
 
             <DistributedObjectView
-                baseURL={"ss"}
+                baseURL={"dbss"}
                 clsName={clsName}
                 doId={doId!}
                 parentId={parentId}
