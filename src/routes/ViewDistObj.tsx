@@ -51,7 +51,7 @@ export default function ViewDistObj() {
         send?.("ss", {msg: "distobj", doId: parseInt(doId)});
 
         return () => unsubscribe?.("ss:distobj");
-    }, []);
+    }, [doId]);
 
     if (loading) {
         return <Loading />;

@@ -51,7 +51,7 @@ export default function ViewDbDistObj() {
         send?.("dbss", {msg: "distobj", doId: parseInt(doId)});
 
         return () => unsubscribe?.("dbss:distobj");
-    }, []);
+    }, [doId]);
 
     if (loading) {
         return <Loading />;
