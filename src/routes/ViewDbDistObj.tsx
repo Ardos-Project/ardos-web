@@ -20,7 +20,7 @@ export default function ViewDbDistObj() {
     const [ownerId, setOwnerId] = useState(0);
     const [size, setSize] = useState(0);
     const [ramFields, setRamFields] = useState<RamFields[]>([]);
-    const [zoneObjects, setZoneObjects] = useState<ZoneObjects[]>([]);
+    const [zoneObjects, setZoneObjects] = useState<ZoneObjects>({});
 
     useEffect(() => {
         if (!doId) {

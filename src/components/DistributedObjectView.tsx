@@ -6,8 +6,7 @@ export type RamFields = {
 };
 
 export type ZoneObjects = {
-    zoneId: number;
-    distObjs: number[];
+    [zoneId: string]: number[];
 };
 
 const DistributedObjectView: FunctionComponent<{
@@ -19,7 +18,7 @@ const DistributedObjectView: FunctionComponent<{
     ownerId: number;
     size: number;
     ramFields: RamFields[];
-    zoneObjects: ZoneObjects[];
+    zoneObjects: ZoneObjects;
 }> = (props) => {
     return (
         <>
@@ -110,9 +109,9 @@ const DistributedObjectView: FunctionComponent<{
                 </div>
             </div>
 
-            {props.zoneObjects.map((zone) => (
+            {Object.keys(props.zoneObjects).map((zoneId) => (
                 <div className={"py-8"}>
-                    <h1 className={"text-4xl font-bold text-gray-700 dark:text-white"}>Zone {zone.zoneId}</h1>
+                    <h1 className={"text-4xl font-bold text-gray-700 dark:text-white"}>Zone {zoneId}</h1>
                     <div className="mt-8 flow-root">
                         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -132,7 +131,7 @@ const DistributedObjectView: FunctionComponent<{
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-gray-200 bg-white">
-                                            {zone.distObjs.map((doId) => (
+                                            {props.zoneObjects[zoneId].map((doId) => (
                                                 <tr key={doId}>
                                                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                                         {doId}
