@@ -12,6 +12,7 @@ import MessageDirector from "@routes/MessageDirector";
 import ClientAgent from "@routes/ClientAgent";
 import ViewClient from "@routes/ViewClient";
 import StateServer from "@routes/StateServer";
+import ViewDistObj from "@routes/ViewDistObj";
 import Database from "@routes/Database";
 import DatabaseStateServer from "@routes/DatabaseStateServer";
 import Config from "@routes/Config";
@@ -41,6 +42,7 @@ export function App() {
                         <Route path={"/ca/:channel"} element={<ViewClient />} />
 
                         <Route path={"/ss"} element={<StateServer />} />
+                        <Route path={"/ss/:doId"} element={<ViewDistObj />} />
 
                         <Route path={"/db"} element={<Database />} />
 
