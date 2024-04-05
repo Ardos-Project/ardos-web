@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "author": "Ardos Team",
   "description": "Ardos Web Panel",
+  "homepage": "https://ardos-project.github.io/ardos-web/",
   "scripts": {
     "start": "cross-env NODE_ENV=development DEV_LOG=true webpack serve --mode=development --stats-error-details",
     "build": "cross-env NODE_ENV=production webpack --mode=production",
