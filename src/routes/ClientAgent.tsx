@@ -69,16 +69,18 @@ export default function ClientAgent() {
             </Helmet>
 
             {legacy && (
-                <div className="rounded-md bg-blue-50 p-4">
-                    <div className="flex">
-                        <div className="flex-shrink-0">
-                            <InformationCircleIcon className="h-5 w-5 text-blue-400" aria-hidden="true" />
-                        </div>
-                        <div className="ml-3">
-                            <p className="text-sm text-blue-700">
-                                Ardos has been compiled in <span className={"font-extrabold"}>LEGACY</span> mode. See
-                                GitHub for more information.
-                            </p>
+                <div className={"pb-4"}>
+                    <div className="rounded-md bg-blue-50 p-4">
+                        <div className="flex">
+                            <div className="flex-shrink-0">
+                                <InformationCircleIcon className="h-5 w-5 text-blue-400" aria-hidden="true" />
+                            </div>
+                            <div className="ml-3">
+                                <p className="text-sm text-blue-700">
+                                    Ardos has been compiled in <span className={"font-extrabold"}>LEGACY</span> mode.
+                                    See GitHub for more information.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
