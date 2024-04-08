@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import Dashboard from "@components/Dashboard";
 import WsContext from "@context/WsContext";
@@ -30,7 +30,7 @@ type Interest = {
 };
 
 export default function ViewClient() {
-    const {channel} = useParams();
+    const {channelHi, channelLo} = useParams();
 
     const {send, subscribe, unsubscribe} = useContext(WsContext);
 
@@ -46,7 +46,7 @@ export default function ViewClient() {
     const [interests, setInterests] = useState<Interest[]>([]);
 
     useEffect(() => {
-        if (!channel) {
+        if (!channelHi || !channelLo) {
             setAvailable(false);
             setLoading(false);
             return;
@@ -72,10 +72,10 @@ export default function ViewClient() {
             setLoading(false);
         });
 
-        send?.("ca", {msg: "client", channel: parseInt(channel)});
+        send?.("ca", {msg: "client", channelHi: parseInt(channelHi), channelLo: parseInt(channelLo)});
 
         return () => unsubscribe?.("ca:client");
-    }, []);
+    }, [channelHi, channelLo]);
 
     if (loading) {
         return <Loading />;
@@ -88,7 +88,10 @@ export default function ViewClient() {
     return (
         <Dashboard>
             <Helmet>
-                <title>Client {channel} | Ardos</title>
+                <title>
+                    Client {channelHi}
+                    {channelLo} | Ardos
+                </title>
             </Helmet>
 
             <div className={"pb-8"}>
@@ -99,7 +102,10 @@ export default function ViewClient() {
                             Channel
                         </dt>
                         <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
-                            <div className="text-xl text-gray-700 dark:text-white">{channel}</div>
+                            <div className="text-xl text-gray-700 dark:text-white">
+                                {channelHi}
+                                {channelLo}
+                            </div>
                         </dd>
                     </div>
                     <div className="pt-6 sm:flex">
@@ -183,7 +189,7 @@ export default function ViewClient() {
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     {obj.clsName}
                                                 </td>
-                                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     {obj.parent}
                                                 </td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -257,7 +263,7 @@ export default function ViewClient() {
                                                 scope="col"
                                                 className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
                                             >
-                                                Zones
+                                                Zone(s)
                                             </th>
                                         </tr>
                                     </thead>
@@ -267,10 +273,10 @@ export default function ViewClient() {
                                                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                                     {interest.id}
                                                 </td>
-                                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     {interest.parent}
                                                 </td>
-                                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     {interest.zones.join(", ")}
                                                 </td>
                                             </tr>
