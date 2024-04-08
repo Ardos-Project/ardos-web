@@ -30,7 +30,7 @@ type Interest = {
 };
 
 export default function ViewClient() {
-    const {channelHi, channelLo} = useParams();
+    const {channel} = useParams();
 
     const {send, subscribe, unsubscribe} = useContext(WsContext);
 
@@ -39,6 +39,8 @@ export default function ViewClient() {
     const [ip, setIp] = useState("");
     const [port, setPort] = useState(0);
     const [state, setState] = useState<0 | 1 | 2>(0);
+    const [channelHi, setChannelHi] = useState(0);
+    const [channelLo, setChannelLo] = useState(0);
     const [channels, setChannels] = useState(0);
     const [postRemoves, setPostRemoves] = useState(0);
     const [owned, setOwned] = useState<OwnedObject[]>([]);
@@ -46,7 +48,7 @@ export default function ViewClient() {
     const [interests, setInterests] = useState<Interest[]>([]);
 
     useEffect(() => {
-        if (!channelHi || !channelLo) {
+        if (!channel) {
             setAvailable(false);
             setLoading(false);
             return;
@@ -63,6 +65,8 @@ export default function ViewClient() {
             setIp(data["ip"]);
             setPort(data["port"]);
             setState(data["state"]);
+            setChannelHi(data["channelHi"]);
+            setChannelLo(data["channelLo"]);
             setChannels(data["channels"]);
             setPostRemoves(data["postRemoves"]);
             setOwned(data["owned"]);
@@ -72,10 +76,10 @@ export default function ViewClient() {
             setLoading(false);
         });
 
-        send?.("ca", {msg: "client", channelHi: parseInt(channelHi), channelLo: parseInt(channelLo)});
+        send?.("ca", {msg: "client", channel});
 
         return () => unsubscribe?.("ca:client");
-    }, [channelHi, channelLo]);
+    }, [channel]);
 
     if (loading) {
         return <Loading />;
@@ -88,10 +92,7 @@ export default function ViewClient() {
     return (
         <Dashboard>
             <Helmet>
-                <title>
-                    Client {channelHi}
-                    {channelLo} | Ardos
-                </title>
+                <title>Client {channel} | Ardos</title>
             </Helmet>
 
             <div className={"pb-8"}>
@@ -102,10 +103,23 @@ export default function ViewClient() {
                             Channel
                         </dt>
                         <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
-                            <div className="text-xl text-gray-700 dark:text-white">
-                                {channelHi}
-                                {channelLo}
-                            </div>
+                            <div className="text-xl text-gray-700 dark:text-white">{channel}</div>
+                        </dd>
+                    </div>
+                    <div className="pt-6 sm:flex">
+                        <dt className="text-2xl font-medium text-gray-700 dark:text-white sm:w-64 sm:flex-none sm:pr-6">
+                            Channel High 32-bits
+                        </dt>
+                        <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                            <div className="text-xl text-gray-700 dark:text-white">{channelHi}</div>
+                        </dd>
+                    </div>
+                    <div className="pt-6 sm:flex">
+                        <dt className="text-2xl font-medium text-gray-700 dark:text-white sm:w-64 sm:flex-none sm:pr-6">
+                            Channel Low 32-bits
+                        </dt>
+                        <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                            <div className="text-xl text-gray-700 dark:text-white">{channelLo}</div>
                         </dd>
                     </div>
                     <div className="pt-6 sm:flex">

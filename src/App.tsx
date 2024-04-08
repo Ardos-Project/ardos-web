@@ -40,7 +40,7 @@ export function App() {
                         <Route path={"/md"} element={<MessageDirector />} />
 
                         <Route path={"/ca"} element={<ClientAgent />} />
-                        <Route path={"/ca/:channelHi/:channelLo"} element={<ViewClient />} />
+                        <Route path={"/ca/:channel"} element={<ViewClient />} />
 
                         <Route path={"/ss"} element={<StateServer />} />
                         <Route path={"/ss/:doId"} element={<ViewDistObj />} />

@@ -14,8 +14,7 @@ const AUTH_STATES = {
 };
 
 type ClientInfo = {
-    channelHi: number;
-    channelLo: number;
+    channel: string;
     ip: string;
     port: number;
     state: 0 | 1 | 2;
@@ -157,8 +156,7 @@ export default function ClientAgent() {
                                         {clients.map((client, idx) => (
                                             <tr key={idx}>
                                                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                                    {client.channelHi}
-                                                    {client.channelLo}
+                                                    {client.channel}
                                                 </td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     {client.ip}:{client.port}
@@ -174,14 +172,11 @@ export default function ClientAgent() {
                                                 </td>
                                                 <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                                     <Link
-                                                        to={`/ca/${client.channelHi}/${client.channelLo}`}
+                                                        to={`/ca/${client.channel}`}
                                                         className="text-indigo-600 hover:text-indigo-900"
                                                     >
                                                         View
-                                                        <span className="sr-only">
-                                                            , {client.channelHi}
-                                                            {client.channelLo}
-                                                        </span>
+                                                        <span className="sr-only">, {client.channel}</span>
                                                     </Link>
                                                 </td>
                                             </tr>
