@@ -9,3 +9,10 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    groups:
+      npm-minor-patch:
+        patterns:
+          - "*"
+    commit-message:
+      prefix: "chore(deps)"
+    versioning-strategy: increase
